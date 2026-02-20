@@ -2,7 +2,7 @@ name: pyinstaller
 on: workflow_dispatch
 
 jobs:
-  build:
+  build-on-windows:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v3
@@ -16,3 +16,14 @@ jobs:
         with:
           name: sha256-windows-exe
           path: dist/sha256.exe
+  test-on-windows:
+    runs-on: windows-2022
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sha256-windows-exe
+      - name: Test exe file
+        run: |
+          ls
+          ./sha256.exe sha256.exe
