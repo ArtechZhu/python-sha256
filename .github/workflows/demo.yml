@@ -18,6 +18,7 @@ jobs:
           path: dist/sha256.exe
   test-on-windows:
     runs-on: windows-2022
+    needs: build-on-windows
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
